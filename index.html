@@ -185,6 +185,25 @@
 footer{padding:64px 0 48px;text-align:center;border-top:1px solid var(--line);}
   footer .wm{font-family:'Cinzel',serif;font-weight:500;font-size:24px;letter-spacing:.3em;padding-left:.3em;color:var(--gold);}
   footer .fine{margin-top:18px;font-size:12px;letter-spacing:.18em;opacity:.55;line-height:2.1;}
+
+  /* ---------- REWARDS POPUP ---------- */
+  .rw-overlay{position:fixed;inset:0;z-index:200;background:rgba(5,5,6,.78);display:none;align-items:center;justify-content:center;padding:20px;}
+  .rw-overlay.rw-show{display:flex;}
+  .rw-card{position:relative;background:var(--ink);border:1px solid var(--gold);max-width:520px;width:100%;text-align:center;padding:44px 40px 36px;box-shadow:0 24px 80px rgba(0,0,0,.6);}
+  .rw-card:before{content:"";position:absolute;inset:8px;border:1px solid var(--line);pointer-events:none;}
+  .rw-badge{width:56px;height:56px;margin:0 auto 16px;}
+  .rw-eyebrow{font-size:11px;letter-spacing:.32em;color:var(--gold);font-weight:600;margin-bottom:12px;}
+  .rw-title{font-family:'Cinzel',serif;font-weight:600;font-size:32px;letter-spacing:.12em;color:var(--ivory);line-height:1.2;}
+  .rw-title span{color:var(--gold);}
+  .rw-offer{margin:18px 0 8px;font-family:'Cinzel',serif;font-size:20px;letter-spacing:.08em;color:var(--gold);}
+  .rw-copy{font-size:15px;line-height:1.65;color:rgba(244,239,230,.78);max-width:400px;margin:0 auto;}
+  .rw-btn{display:inline-block;margin-top:24px;background:var(--gold);color:var(--ink);font-size:13px;letter-spacing:.24em;font-weight:700;padding:15px 34px;}
+  .rw-btn:hover{opacity:.88;}
+  .rw-no{display:block;margin-top:16px;font-size:12.5px;letter-spacing:.08em;color:rgba(244,239,230,.55);cursor:pointer;background:none;border:none;font-family:inherit;}
+  .rw-no:hover{color:var(--ivory);}
+  .rw-x{position:absolute;top:10px;right:14px;z-index:2;background:none;border:none;color:rgba(244,239,230,.65);font-size:28px;line-height:1;cursor:pointer;padding:6px;}
+  .rw-x:hover{color:var(--gold);}
+  @media(max-width:640px){ .rw-card{padding:38px 24px 30px;} .rw-title{font-size:26px;} }
 </style>
 </head>
 <body>
@@ -397,6 +416,40 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid var(--line);}
      el.innerHTML=rows+'<p style="font-size:11px;opacity:.55;margin-top:8px">Hardin, MT &middot; Open-Meteo</p>';
    })
    .catch(function(){ el.innerHTML='<p style="font-size:13.5px">Weather unavailable right now.</p>'; });
+})();
+</script>
+
+<!-- REWARDS POPUP -->
+<div class="rw-overlay" id="rwOverlay" role="dialog" aria-modal="true" aria-label="Join Harriet's Rewards">
+  <div class="rw-card">
+    <button class="rw-x" id="rwClose" aria-label="Close">&times;</button>
+    <img class="rw-badge" src="assets/badge.png" alt="Harriet's emblem">
+    <div class="rw-eyebrow">HARRIET&rsquo;S REWARDS</div>
+    <div class="rw-title">START WITH<br><span>50 POINTS</span></div>
+    <div class="rw-offer">100 POINTS = $5 OFF</div>
+    <p class="rw-copy">Join free and start halfway to your first $5 off. Earn 1 point for every $1 you spend &mdash; just your phone number, no card to carry.</p>
+    <a class="rw-btn" id="rwJoin" href="https://www.toasttab.com/harriets-hardin-mt-316-n-center-ave/rewardsLookup" target="_blank" rel="noopener">JOIN FREE</a>
+    <button class="rw-no" id="rwNo">No thanks</button>
+  </div>
+</div>
+<script>
+(function(){
+  var ov=document.getElementById('rwOverlay'); if(!ov) return;
+  var KEY='harriets-rw-dismissed', DAYS=30;
+  function hide(){ ov.classList.remove('rw-show'); try{localStorage.setItem(KEY, String(Date.now()));}catch(e){} }
+  document.getElementById('rwClose').addEventListener('click', hide);
+  document.getElementById('rwNo').addEventListener('click', hide);
+  document.getElementById('rwJoin').addEventListener('click', hide);
+  ov.addEventListener('click', function(e){ if(e.target===ov) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+  var preview = location.search.indexOf('rwpreview')>-1;
+  if(preview){ ov.classList.add('rw-show'); return; }
+  try{
+    var t=parseInt(localStorage.getItem(KEY)||'0',10);
+    if(t && (Date.now()-t) < DAYS*24*60*60*1000) return;
+  }catch(e){}
+  /* Show once after 10 seconds */
+  setTimeout(function(){ ov.classList.add('rw-show'); }, 10000);
 })();
 </script>
 </body>
