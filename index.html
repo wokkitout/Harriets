@@ -448,8 +448,8 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid var(--line);}
     var t=parseInt(localStorage.getItem(KEY)||'0',10);
     if(t && (Date.now()-t) < DAYS*24*60*60*1000) return;
   }catch(e){}
-  /* Show once after 10 seconds */
-  setTimeout(function(){ ov.classList.add('rw-show'); }, 10000);
+  /* Show right away, once (owner's choice Nov 9, 2026) */
+  ov.classList.add('rw-show');
 })();
 </script>
 </body>
