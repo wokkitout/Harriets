@@ -141,7 +141,9 @@
   .hero .meta{display:flex;justify-content:center;gap:0;flex-wrap:wrap;font-size:12px;letter-spacing:.22em;font-weight:500;}
   .hero .meta span{padding:0 22px;border-right:1px solid var(--line);}
   .hero .meta span:last-child{border-right:none;}
-  @media(max-width:640px){ .hero .meta span{border-right:none;padding:4px 10px;} }
+  .hero .meta .hrs{white-space:nowrap;padding:0;border-right:none;}
+  .hero .meta .sep{padding:0;border-right:none;}
+  @media(max-width:640px){ .hero .meta span{border-right:none;padding:4px 10px;} .hero .meta .hrs-b{display:block;} .hero .meta .sep{display:none;} }
 
   /* ---------- SECTIONS ---------- */
   section.blk{padding:88px 0;border-top:1px solid var(--line);}
@@ -285,7 +287,7 @@ src="https://www.facebook.com/tr?id=341253272173795&ev=PageView&noscript=1"
     <div class="rule"></div>
     <div class="meta">
       <span>HARDIN, MONTANA</span>
-      <span>MON &ndash; THU 12 PM &ndash; 8 PM &middot; FRI &ndash; SAT 12 PM &ndash; 9 PM</span>
+      <span><span class="hrs">MON &ndash; THU 12 PM &ndash; 8 PM</span><span class="hrs hrs-b"><span class="sep"> &middot; </span>FRI &ndash; SAT 12 PM &ndash; 9 PM</span></span>
       <span>SUNDAY BRUNCH BUFFET 12 PM &ndash; 7 PM</span>
     </div>
     <div style="margin-top:28px;display:inline-block;border:1px solid #C2A962;padding:11px 24px;color:#F4EFE6;letter-spacing:.18em;font-size:13px;">CLOSED THANKSGIVING DAY &middot; THURSDAY, NOVEMBER 26 &middot; REOPEN FRIDAY AT 12 PM</div>
