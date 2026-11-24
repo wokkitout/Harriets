@@ -144,6 +144,7 @@
   .hero .meta .hrs{white-space:nowrap;padding:0;border-right:none;}
   .hero .meta .sep{padding:0;border-right:none;}
   @media(max-width:640px){ .hero .meta span{border-right:none;padding:4px 10px;} .hero .meta .hrs-b{display:block;} .hero .meta .sep{display:none;} }
+  @media(max-width:640px){ .sec-head:has(> .knote){flex-wrap:wrap;row-gap:10px;} .knote{flex:0 0 100%;margin-left:0;} .knote .k1{white-space:nowrap;} .knote .k2{display:block;white-space:nowrap;} .knote .ksep{display:none;} }
 
   /* ---------- SECTIONS ---------- */
   section.blk{padding:88px 0;border-top:1px solid var(--line);}
@@ -298,7 +299,7 @@ src="https://www.facebook.com/tr?id=341253272173795&ev=PageView&noscript=1"
   <div class="sec-head">
     <span class="sec-num">01</span>
     <h2 class="sec-title">DINING</h2>
-    <span class="sec-note">KITCHEN OPEN MON &ndash; THU 12 PM &ndash; 8 PM &middot; FRI &ndash; SAT 12 PM &ndash; 9 PM<br>SUNDAYS 12 PM &ndash; 7 PM</span>
+    <span class="sec-note knote">KITCHEN OPEN <span class="k1">MON &ndash; THU 12 PM &ndash; 8 PM</span><span class="k2"><span class="ksep"> &middot; </span>FRI &ndash; SAT 12 PM &ndash; 9 PM</span><br>SUNDAYS 12 PM &ndash; 7 PM</span>
   </div>
   <p class="lead">A short menu, done properly. Local beef from S Ranch Meats, everything cooked to order, no shortcuts worth taking.</p>
 
